@@ -1,10 +1,21 @@
 import './style.css'
+import getEmployees from "./employeesFetch.js";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <h1>Hello Vite!</h1>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const button = document.querySelector("#employees");
+const employees = document.querySelector(".employees");
+
+
+// button.addEventListener("click", async () => {
+  const array = await getEmployees();
+  console.log(array)
+
+  const arrayMap = array.map(item => {
+    return `<li>${item.id}: ${item.name}</li>`
+  })
+  // const employeesMap = array.map(item => {
+  //   return `<li>${item.id}: ${item.name}</li>`
+  // })
+
+  employees.innerHTML = arrayMap.join("");
+// })
+
