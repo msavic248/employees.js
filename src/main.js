@@ -10,7 +10,7 @@ const employees = document.querySelector(".employees");
   console.log(array)
 
   const arrayMap = array.map(item => {
-    return `<li>${item.id}: ${item.name}</li>`
+    return `<li>ID:${item.id} - ${item.name} - Salary:${item.salary}</li>`
   })
   // const employeesMap = array.map(item => {
   //   return `<li>${item.id}: ${item.name}</li>`

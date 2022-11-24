@@ -52,5 +52,17 @@ export default async function getEmployees() {
     const salariesArray = await fetchSalaries();
     const sortedArray = [];
 
-    return employeesArray;
+    employeesArray.forEach(employee => {
+        salariesArray.forEach(salary => {
+            if(employee.id == salary.employeeId) {
+                sortedArray.push({
+                    id: employee.id,
+                    name: employee.name,
+                    salary: salary.salary,
+                })
+            }
+        })
+    })
+
+    return sortedArray;
 }
