@@ -29,7 +29,7 @@ async function fetchEmployees() {
 async function fetchSalaries() {
 	//TODO returns salaries from json
 
-    //async await fetch request to get all employees
+    //async await fetch request to get all salaries
     try{
         const response = await fetch(`${domain}/salaries.json`);
 
@@ -52,6 +52,7 @@ export default async function getEmployees() {
     const salariesArray = await fetchSalaries();
     const sortedArray = [];
 
+    //forEach loop to match employee id's to salary, then push to empty sortedArray
     employeesArray.forEach(employee => {
         salariesArray.forEach(salary => {
             if(employee.id == salary.employeeId) {
