@@ -45,25 +45,41 @@ async function fetchSalaries() {
 
 }
 
-export default async function getEmployees() {
+export default async function getEmployees(sort) {
     //TODO should be exposed function which returns array of employees => for example [{id:"id", "name":"test", "salary":""}]
 
     const employeesArray = await fetchEmployees();
     const salariesArray = await fetchSalaries();
-    const sortedArray = [];
+    const array = [];
 
-    //forEach loop to match employee id's to salary, then push to empty sortedArray
+    //forEach loop to match employee id's to salary, then push to empty array
     employeesArray.forEach(employee => {
         salariesArray.forEach(salary => {
             if(employee.id == salary.employeeId) {
-                sortedArray.push({
+                array.push({
                     id: employee.id,
                     name: employee.name,
-                    salary: salary.salary,
+                    salary: salary.salary ?? 0,
                 })
             }
         })
     })
+
+    //Sorting populated array either ascending or descending
+    if(sort == "ascending") {
+        const sortedArray = array.sort((a, b) => parseFloat(a.salary) - parseFloat(b.salary));
+        
+        return sortedArray;
+    }
+    
+    if (sort == "descending") {
+        const sortedArray = array.sort((a, b) => parseFloat(b.salary) - parseFloat(a.salary));
+
+        return sortedArray;
+    }
+
+    // sort by id by default
+    const sortedArray = array.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
 
     return sortedArray;
 }
