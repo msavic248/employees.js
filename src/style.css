@@ -72,6 +72,14 @@ button:focus-visible {
   display: none;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

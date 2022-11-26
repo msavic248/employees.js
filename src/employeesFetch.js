@@ -2,14 +2,6 @@ let domain = "./fake-server";
 
 async function fetchEmployees() {
 
-    //fetch request to get all employees
-    // fetch(`${domain}/employees.json`)
-    // .then(response => response.json())
-    // .then(data => {
-    //     console.log(data)
-    //     return data;
-    // })
-
     //async await fetch request to get all employees
     try{
         const response = await fetch(`${domain}/employees.json`);
@@ -48,14 +40,18 @@ async function fetchSalaries() {
 export default async function getEmployees(sort) {
     //TODO should be exposed function which returns array of employees => for example [{id:"id", "name":"test", "salary":""}]
 
+    //waits for fetchEmployees and fetchSalaries to resolve
     const employeesArray = await fetchEmployees();
     const salariesArray = await fetchSalaries();
+
     const array = [];
 
     //forEach loop to match employee id's to salary, then push to empty array
     employeesArray.forEach(employee => {
         salariesArray.forEach(salary => {
+            // if id has a match then push data to our created array
             if(employee.id == salary.employeeId) {
+                //if salary is null, defaults to 0
                 array.push({
                     id: employee.id,
                     name: employee.name,
