@@ -18,6 +18,7 @@ const array = await getEmployees();
 ```
 Make sure to set parent function to async
 
+
 ### Sort parameter
 getEmployees() function accepts a string as a parameter, currently only supports either/or:
 
@@ -30,6 +31,7 @@ const array = await getEmployees("ascending")
 ```
 
 getEmployees() function will sort **array by employee id by default** when no sort parameter is defined.
+
 
 ## Notes / Questions
 
